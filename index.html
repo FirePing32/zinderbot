@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en"> <link rel="icon" href="favicon.png" class="cropimg">
+<head>
+<link rel="stylesheet" href="main.css"> 
+<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+<script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-3728861792178788",
+    enable_page_level_ads: true
+  });
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125087688-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-125087688-1');
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Zinderbot Image Recognition | Prakhar Gurunani</title>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="predict.js"></script>
+  <script type="text/javascript" src="keys.js"></script>
+  <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
+  <script>
+  try {
+    var app = new Clarifai.App({
+     apiKey: myApiKey
+    });
+  }
+  catch(err) {
+    alert("Need a valid API Key!");
+    throw "Invalid API Key";
+  }
+  
+  // Checks for valid image type
+  function validFile(imageName) {
+    var lowerImageName = imageName.toLowerCase();
+    return lowerImageName.search(/jpg|png|bmp|tiff/gi) != -1;
+  }
+  
+  // Fills custom model dropdown
+  window.onload = function() {
+    var select = document.getElementById("custom_models_dropdown");
+    
+    app.models.list().then(
+      function(response) {
+        var ids = response.rawData;
+        
+        for(var i=0; i < ids.length; i++) {
+          var model = ids[i];
+          if(model.app_id != "main") {
+            var el = document.createElement("option");
+            el.textContent = model.name;
+            el.value = model.id;
+            select.appendChild(el);
+          }
+        }
+      },
+      function(err) {
+        alert(err);
+      }
+    );
+  }
+  </script>
+  
+  <style type="text/css">
+    body { 
+      margin-left:20px; 
+      margin-top:20px; 
+      margin-bottom:30px; 
+      height:100%;
+    }
+
+    p, button, form {
+      font-family: 'Luckiest Guy', cursive;
+    }
+
+    #Model_Title {
+      font-family: 'Luckiest Guy', cursive;
+    }
+
+    input {
+      font-family: 'Luckiest Guy', cursive;
+    }
+
+    #filename {
+      font-family: 'Luckiest Guy', cursive;
+    }
+    
+    #predictions {
+      font-family: 'Luckiest Guy', cursive;
+    }
+
+    ul {
+      list-style: none;
+      margin: 30px 0 0 0;
+      padding: 0;
+      columns: 1;
+      -webkit-columns: 1;
+      -moz-columns: 1;
+      overflow:auto;
+    }
+    li {
+      box-shadow: 0 0 0 2px #546578 inset;
+      margin: 0 0 5px 0;
+      border-radius: 16px;
+      line-height: 28px;
+      padding: 2px 15px;
+      font-weight: 500;
+      font-size: 15px;
+      color: #2E4157;
+    }
+    ul li i{
+      font-style: normal;
+      font-size: 14px;
+    }
+    
+    .conceptBox {
+      float:left; 
+      margin-left:40px; 
+      margin-top:15px;
+      margin-bottom:30px;
+      height:100%;
+    }
+  </style>
+</head>
+ <body>
+  <amp-auto-ads type="adsense"
+    data-ad-client="ca-pub-3728861792178788">
+  </amp-auto-ads>
+  <div id="Title" style="font-size:48px; margin-bottom:20px;">
+  <center><img src="logo.png" height="200" width="200"></center>
+  <center><p>Zinderbot Image Recognition</p></center>
+  <div id="Title" style="font-size:20px; margin-bottom:20px;">
+  <center><p>Designed and coded by ~ Prakhar Gurunani</p></center>
+  <a href="https://github.com/prakhargurunani" target="_blank" style="text-align: left; float: left; margin-left: 150px;">Github</a><br>
+  <a href="https://www.youtube.com/channel/UCGZbQz5JKckv4Tajjg3ou0g" target="_blank" style="text-align: right; float: right; margin-right: 170px;">Youtube</a><br><br>
+  <div id="Model_Title" style="font-size:16px; margin-bottom:5px; text-align: center;"><emp>Categories</emp></div><br>
+  <input type="hidden" id="hidden-counter" name="hidden-counter" value="1"/>
+  <form action="" style="font-size:14px; margin-bottom:20px; float:center; text-align: center; margin-right:30px;">
+    <input type="radio" name="model" value="general" checked="checked"> General
+    <input type="radio" name="model" value="food"> Food
+    <input type="radio" name="model" value="NSFW"> NSFW
+    <input type="radio" name="model" value="travel"> Travel
+    <input type="radio" name="model" value="wedding"> Wedding
+    <input type="radio" name="model" value="color"> Color
+    <input type="radio" name="model" value="apparel"> Apparel
+    <input type="radio" name="model" value="faces"> Faces<br><br>
+    <input type="radio" name="model" value="demographic"> Demographic
+    <input type="radio" name="model" value="celebrity"> Celebrity
+    <input type="radio" name="model" value="logo"> Logo
+    <input type="radio" name="model" value="focus"> Focus
+    <input type="radio" name="model" value="moderation"> Moderation
+    <input type="radio" name="model" value="portrait"> Portrait Quality
+    <input type="radio" name="model" value="landscape"> Landscape Quality
+    <input type="radio" name="model" value="texturespatterns"> Textures & Patterns
+  </form>
+  <br><br>
+  <div style="float:initial; text-align: center;">
+    <input type="text" id="imgurl" placeholder="Image URL" style="text-align: center; float: initial;" size="80"/><br><br>
+    <button onclick="
+      if(imgurl.value == '') { 
+        alert('Please enter an image URL!'); 
+        return;
+      } 
+    
+      else if (!validFile(imgurl.value)) {
+        alert('Supported File Types: JPEG, PNG, TIFF, BMP');
+        return;
+      }
+    
+      predict_click($('#imgurl').val(), 'url');" style="width:112px; text-align: center; float: initial;">Predict from URL</button>
+    
+    <br/><br><br>
+    <input type="file" id="filename" placeholder="Filename" style="text-align: center; float: initial; padding-left: 100px;" size="80"/><br><br>
+    <button onclick="
+      if(filename.value == '') { 
+        alert('Please browse for a file!'); 
+        return;
+      } 
+    
+      else if (!validFile(filename.value)) {
+        alert('Supported File Types: JPEG, PNG, TIFF, BMP');
+        return;
+      }
+      predict_click($('#filename').val(), 'file');" style="width:112px; text-align: center; float: initial;">Predict local file</button>
+  </div>
+  
+  <div id="predictions" style="color: black;">
+    <div style="margin-top:30px; margin-left:20px; margin-bottom:30px; clear:left; color: black; font-weight: bold;">
+      <img id="img_preview1" src="" width="400"></div></div>
+      <br/>
+      <span id="add-image-button" style="visibility:hidden"><button onClick="addImageToApp(1)">Add image to application</button></span>
+    </div>
+    <div id="concepts" class="conceptBox" style="font-family: 'Luckiest Guy'; color: black; font-weight: bold;">
+    </div>
+  </div>
+</body>
+</html>    
