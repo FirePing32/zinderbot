@@ -1,3 +1,4 @@
+/* background animation */
 body {
 	width: 100wh;
 	height: 90vh;
@@ -44,6 +45,7 @@ body {
 		background-position: 0% 50%
 	}
 }
+/* default settings */
 a {
     font-family: 'Luckiest Guy', cursive;
     color: black;
@@ -103,7 +105,7 @@ audio {
     color: black;
 }
 
-/* mobile phone */
+/* mobile phones and tablets */
 @media screen and (max-device-width: 480px) {
     body {
         height: 120%;

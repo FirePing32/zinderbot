@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en"> <link rel="icon" href="favicon.png" class="cropimg">
 <head>
-<link rel="stylesheet" href="main.css"> 
-<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+<link rel="stylesheet" href="main.css"> <!-- main stylesheet -->
+<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet"> <!-- web font -->
 <script async custom-element="amp-auto-ads"
         src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-</script>
+</script> <!-- amp ads -->
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
     google_ad_client: "ca-pub-3728861792178788",
     enable_page_level_ads: true
   });
-</script>
+</script> <!-- Google ads -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125087688-1"></script>
 <script>
@@ -25,9 +25,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Zinderbot Image Recognition | Prakhar Gurunani</title>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script type="text/javascript" src="predict.js"></script>
-  <script type="text/javascript" src="keys.js"></script>
-  <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
+  <script type="text/javascript" src="predict.js"></script> <!-- Clarifai -->
+  <script type="text/javascript" src="keys.js"></script> <!-- JS -->
+  <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script> <!-- files -->
+  <!-- getting and verifying API key -->
   <script>
   try {
     var app = new Clarifai.App({
@@ -69,7 +70,7 @@
     );
   }
   </script>
-  
+<!-- custom Bootstrap CSS -->
   <style type="text/css">
     body { 
       margin-left:20px; 
@@ -132,6 +133,7 @@
   </style>
 </head>
  <body>
+   <!-- Adsense verification -->
   <amp-auto-ads type="adsense"
     data-ad-client="ca-pub-3728861792178788">
   </amp-auto-ads>
@@ -144,6 +146,7 @@
   <a href="https://www.youtube.com/channel/UCGZbQz5JKckv4Tajjg3ou0g" target="_blank" style="text-align: right; float: right; margin-right: 170px;">Youtube</a><br><br>
   <div id="Model_Title" style="font-size:16px; margin-bottom:5px; text-align: center;"><emp>Categories</emp></div><br>
   <input type="hidden" id="hidden-counter" name="hidden-counter" value="1"/>
+  <!-- image categories -->
   <form action="" style="font-size:14px; margin-bottom:20px; float:center; text-align: center; margin-right:30px;">
     <input type="radio" name="model" value="general" checked="checked"> General
     <input type="radio" name="model" value="food"> Food
@@ -163,6 +166,7 @@
     <input type="radio" name="model" value="texturespatterns"> Textures & Patterns
   </form>
   <br><br>
+  <!-- Clarifai external JavaScript, loading image via file or URL -->
   <div style="float:initial; text-align: center;">
     <input type="text" id="imgurl" placeholder="Image URL" style="text-align: center; float: initial;" size="80"/><br><br>
     <button onclick="
@@ -192,7 +196,7 @@
       }
       predict_click($('#filename').val(), 'file');" style="width:112px; text-align: center; float: initial;">Predict local file</button>
   </div>
-  
+  <!-- displaying results -->
   <div id="predictions" style="color: black;">
     <div style="margin-top:30px; margin-left:20px; margin-bottom:30px; clear:left; color: black; font-weight: bold;">
       <img id="img_preview1" src="" width="400"></div></div>
